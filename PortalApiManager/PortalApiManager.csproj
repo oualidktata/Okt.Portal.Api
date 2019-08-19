@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>License.txt</PackageLicenseFile>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>SigningKey.snk</AssemblyOriginatorKeyFile>
+    <Version>1.0.7</Version>
+    <PackageId>Okt.PortalApiManager</PackageId>
+    <Authors>Oualid Ktata</Authors>
+    <Copyright>Copyright (c) 2019 Oualid Ktata</Copyright>
+    <Product>Okt.PortalApiManager</Product>
+    <Company>Okt</Company>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\License.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Assette.APIClient.SDK" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AuthenticationServiceProxy\AuthenticationServiceProxy.csproj" />
+    <ProjectReference Include="..\Portal.SDK\Portal.SDK.csproj" />
+  </ItemGroup>
+
+</Project>

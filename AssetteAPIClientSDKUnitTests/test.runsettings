@@ -1,0 +1,3 @@
+﻿<TestRunParameters>
+  <Parameter name="targetApi" value="Addenda" />
+</TestRunParameters>

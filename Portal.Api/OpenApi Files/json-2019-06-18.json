@@ -1,0 +1,2655 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Portal Api Specification 1.0",
+    "description": "Api specification",
+    "contact": {
+      "name": "Oualid Ktata",
+      "email": "o.ktata@addendacapital.com"
+    },
+    "license": {
+      "name": "Assette license",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/v1/accounts": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Creates a new account from attribute",
+        "description": "Requires admin privileges",
+        "operationId": "CreateAccount",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountToCreateDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountToCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error"
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "201": {
+            "description": "Success"
+          },
+          "409": {
+            "description": "Conflict"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Updates an account.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error"
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success"
+          },
+          "409": {
+            "description": "Conflict"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Removes an account.",
+        "parameters": [
+          {
+            "name": "accountCode",
+            "in": "query",
+            "description": "The code of the account to remove.",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error"
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success"
+          },
+          "409": {
+            "description": "Conflict"
+          }
+        }
+      }
+    },
+    "/api/v1/accounts/accounts": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Gets accounts visible for a specific user.",
+        "parameters": [
+          {
+            "name": "userKey",
+            "in": "query",
+            "description": "The user key to filter by.",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error"
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountDto"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountDto"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict"
+          }
+        }
+      }
+    },
+    "/api/v1/accounts/all": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Gets all accounts in the system.",
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error"
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountDto"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/categories": {
+      "post": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Creates a category of document types.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoryToCreateDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoryToCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error"
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "201": {
+            "description": "Success"
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Gets a specific category.",
+        "parameters": [
+          {
+            "name": "categoryCode",
+            "in": "query",
+            "description": "The Key of the Category to look for.",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error"
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/categories/all": {
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Get All categories",
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error"
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/categories/remove": {
+      "delete": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Remove a category",
+        "parameters": [
+          {
+            "name": "categoryCode",
+            "in": "query",
+            "description": "Category to remove",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error"
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success"
+          },
+          "409": {
+            "description": "Conflict"
+          }
+        }
+      }
+    },
+    "/api/v1/documentTypes": {
+      "post": {
+        "tags": [
+          "DocumentType"
+        ],
+        "summary": "Creates a new Document Type.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentTypeToCreateDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentTypeToCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "201": {
+            "description": "Success"
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "DocumentType"
+        ],
+        "summary": "Gets a document type.",
+        "parameters": [
+          {
+            "name": "documentTypeCode",
+            "in": "query",
+            "description": "The Key of the document Type to look for.",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentTypeDto"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentTypeDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/documentTypes/remove": {
+      "delete": {
+        "tags": [
+          "DocumentType"
+        ],
+        "summary": "Removes a document type.",
+        "parameters": [
+          {
+            "name": "documentTypeCode",
+            "in": "query",
+            "description": "Document Type code to remove",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success"
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/documentTypes/all": {
+      "get": {
+        "tags": [
+          "DocumentType"
+        ],
+        "summary": "Gets all documentTypes.",
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DocumentTypeDto"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DocumentTypeDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/documentTypes/{categoryCode}": {
+      "get": {
+        "tags": [
+          "DocumentType"
+        ],
+        "summary": "Gets document types of a category.",
+        "parameters": [
+          {
+            "name": "categoryCode",
+            "in": "path",
+            "description": "Category Code to which document types are attached.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success"
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/files/all": {
+      "get": {
+        "tags": [
+          "FileManager"
+        ],
+        "summary": "List of all documents",
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/files/orphans": {
+      "get": {
+        "tags": [
+          "FileManager"
+        ],
+        "summary": "Gets documents that are not visible by any user based on provided permissions.",
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DocumentFileDto"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DocumentFileDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/permissions": {
+      "post": {
+        "tags": [
+          "Permission"
+        ],
+        "summary": "Adds a new permission.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PermissionDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/PermissionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error"
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "201": {
+            "description": "Success"
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Permission"
+        ],
+        "summary": "Deletes a specific permission.",
+        "parameters": [
+          {
+            "name": "userKey",
+            "in": "query",
+            "description": "The user key associated to the permission",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "accountCode",
+            "in": "query",
+            "description": "The account associated to the permission",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "documentTypeCode",
+            "in": "query",
+            "description": "The document Type associated to the permission",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success"
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Permission"
+        ],
+        "summary": "Gets a specific permission.",
+        "parameters": [
+          {
+            "name": "userKey",
+            "in": "query",
+            "description": "The user key associated to the permission",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "accountCode",
+            "in": "query",
+            "description": "The account associated to the permission",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "documentTypeCode",
+            "in": "query",
+            "description": "The document Type associated to the permission",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PermissionDto"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/PermissionDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/permissions/remove": {
+      "delete": {
+        "tags": [
+          "Permission"
+        ],
+        "summary": "Deletes a specific permission.",
+        "parameters": [
+          {
+            "name": "userKey",
+            "in": "query",
+            "description": "The user key associated to the permission",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "accountCode",
+            "in": "query",
+            "description": "The account associated to the permission",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "documentTypeCode",
+            "in": "query",
+            "description": "The document Type associated to the permission",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success"
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/permissions/permissions": {
+      "get": {
+        "tags": [
+          "Permission"
+        ],
+        "summary": "Gets permissions of a specific user.",
+        "parameters": [
+          {
+            "name": "userKey",
+            "in": "query",
+            "description": "The user key associated to the permission",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PermissionDto"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PermissionDto"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Creates a new user.",
+        "description": "<h1>Post: users/Create</h1>\\\r\n                { \\\r\n                    \"userKey\": \"IND00001\",\\\r\n                    \"userName\": \"wsmith\",\\\r\n                    \"firstName\": \"Will\",\\\r\n                    \"lastName\": \"Smith\",\\\r\n                    \"email\": \"will.smith@disney.com\",\\\r\n                    \"languageCode\": \"en-US\"\\\r\n                }",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "201": {
+            "description": "Success"
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Updates a specific user.",
+        "description": "<h3>PUT /User/Update</h3>\r\n                {\\\r\n                    \"userKey\": \"IND00001\",\\\r\n                    \"userName\": \"wsmith\",\\\r\n                    \"firstName\": \"Will\",\\\r\n                    \"lastName\": \"Smith\",\\\r\n                    \"email\": \"will.smith@disney.com\",\\\r\n                    \"languageCode\": \"en-US\"\\\r\n                }",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/bulk/create": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDtoIResult"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDtoIResult"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/deactivate/{userKey}": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Deactivates a user.",
+        "parameters": [
+          {
+            "name": "userKey",
+            "in": "path",
+            "description": "The key of the user to deactivate.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success"
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/activate/{userKey}": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Activates a user",
+        "parameters": [
+          {
+            "name": "userKey",
+            "in": "path",
+            "description": "The key of the user to activate.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success"
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/lock/{userKey}": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Locks a user.",
+        "parameters": [
+          {
+            "name": "userKey",
+            "in": "path",
+            "description": "The user to lock",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success"
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/unlock/{userKey}": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Unlocks a user",
+        "parameters": [
+          {
+            "name": "userKey",
+            "in": "path",
+            "description": "The user to unlock",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success"
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/resetPassword": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Resets the user password",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success"
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/forgotPassword": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Forgot password.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPasswordDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success"
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/get": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Gets a specific user by key.",
+        "parameters": [
+          {
+            "name": "userKey",
+            "in": "path",
+            "description": "The user key to filter by.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success"
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/{userKey}/accounts": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Gets accounts for a specific user.",
+        "parameters": [
+          {
+            "name": "userKey",
+            "in": "path",
+            "description": "User key to filter by",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountDto"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountDto"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/{userKey}/documentTypes": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Gets documentTypes for a specific user",
+        "parameters": [
+          {
+            "name": "userKey",
+            "in": "path",
+            "description": "User key to filter by",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DocumentTypeDto"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DocumentTypeDto"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TranslatableName": {
+        "required": [
+          "nameEn",
+          "nameFr"
+        ],
+        "type": "object",
+        "properties": {
+          "nameEn": {
+            "maxLength": 200,
+            "type": "string"
+          },
+          "nameFr": {
+            "maxLength": 200,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a generic bilingual Name object"
+      },
+      "AccountToCreateDto": {
+        "required": [
+          "code",
+          "isActive",
+          "name",
+          "openDate"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "AccountCode"
+          },
+          "name": {
+            "$ref": "#/components/schemas/TranslatableName"
+          },
+          "openDate": {
+            "type": "string",
+            "description": "The date when the account was opened (YYYY-MM-DD) ISO-8601\r\n <remarks>example: 2019-06-01</remarks>",
+            "format": "date"
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "Whether the account is active or not."
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountDto": {
+        "required": [
+          "code",
+          "id",
+          "isActive",
+          "name",
+          "openDate"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier of the account",
+            "format": "int32"
+          },
+          "code": {
+            "maxLength": 7,
+            "type": "string",
+            "description": "AccountCode"
+          },
+          "name": {
+            "$ref": "#/components/schemas/TranslatableName"
+          },
+          "openDate": {
+            "type": "string",
+            "description": "The date the account was opened (Short Date)",
+            "format": "date"
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "Indicates whether the account is active"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Account DTO"
+      },
+      "CategoryToCreateDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The unique code for the category."
+          },
+          "name": {
+            "$ref": "#/components/schemas/TranslatableName"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A model for a category of document types to create."
+      },
+      "DocumentTypeToCreateDto": {
+        "required": [
+          "docTypeCode",
+          "language",
+          "translatableName"
+        ],
+        "type": "object",
+        "properties": {
+          "docTypeCode": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "DocTypeCode"
+          },
+          "translatableName": {
+            "$ref": "#/components/schemas/TranslatableName"
+          },
+          "categoryId": {
+            "type": "integer",
+            "description": "CategoryId of the document Type",
+            "format": "int32"
+          },
+          "language": {
+            "maxLength": 4,
+            "type": "string",
+            "description": "The language of the documentType."
+          }
+        },
+        "additionalProperties": false,
+        "description": "A representation of a Document Type to create DTO"
+      },
+      "CategoryDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Internal Id of the CategoryId.",
+            "format": "int32"
+          },
+          "code": {
+            "type": "string",
+            "description": "The unique code for the category."
+          },
+          "name": {
+            "$ref": "#/components/schemas/TranslatableName"
+          },
+          "documentTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentTypeDto"
+            },
+            "description": "List of child document types."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Category of document types."
+      },
+      "DocumentTypeDto": {
+        "required": [
+          "category",
+          "docTypeCode",
+          "documentTypeId",
+          "language",
+          "translatableName"
+        ],
+        "type": "object",
+        "properties": {
+          "documentTypeId": {
+            "type": "integer",
+            "description": "Unique identifier of the document Type",
+            "format": "int32"
+          },
+          "docTypeCode": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "DocumentTypeCode"
+          },
+          "translatableName": {
+            "$ref": "#/components/schemas/TranslatableName"
+          },
+          "category": {
+            "$ref": "#/components/schemas/CategoryDto"
+          },
+          "language": {
+            "maxLength": 4,
+            "type": "string",
+            "description": "The language of the document Type"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A representation of a Document Type DTO."
+      },
+      "DocumentFileDto": {
+        "type": "object",
+        "properties": {
+          "fileName": {
+            "type": "string",
+            "description": "The name of the file as exported\r\nCONF_CERT_AN_T~^fr-CA~^A1082~^20181231~^ADDN Test Document_PPP.pdf"
+          },
+          "logicalName": {
+            "type": "string",
+            "description": "The file name as it downloaded\r\nex:ADDN Test Document_PPP.pdf"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A POCO representation of the physical file\r\nCONF_CERT_AN_T~^fr-CA~^A1082~^20181231~^ADDN Test Document_PPP"
+      },
+      "PermissionDto": {
+        "required": [
+          "accountCode",
+          "createdOn",
+          "documentTypeCode",
+          "isActive",
+          "userKey"
+        ],
+        "type": "object",
+        "properties": {
+          "userKey": {
+            "maxLength": 11,
+            "type": "string"
+          },
+          "accountCode": {
+            "maxLength": 7,
+            "type": "string"
+          },
+          "documentTypeCode": {
+            "maxLength": 20,
+            "type": "string"
+          },
+          "createdOn": {
+            "type": "string",
+            "format": "date"
+          },
+          "isActive": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A permission DTO, a permission has a unique Key: userKey-AccountCode-DocumentType"
+      },
+      "UserDto": {
+        "required": [
+          "email",
+          "firstName",
+          "languageCode",
+          "lastName",
+          "userKey",
+          "userName"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "description": "Unique Identifier of a user",
+            "format": "int32"
+          },
+          "userKey": {
+            "maxLength": 11,
+            "type": "string"
+          },
+          "userName": {
+            "maxLength": 50,
+            "type": "string"
+          },
+          "firstName": {
+            "maxLength": 50,
+            "type": "string"
+          },
+          "lastName": {
+            "maxLength": 50,
+            "type": "string"
+          },
+          "email": {
+            "maxLength": 50,
+            "type": "string"
+          },
+          "languageCode": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "description": "User DTO"
+      },
+      "UserDtoIResult": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/UserDto"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResetPasswordDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "confirmPassword": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ForgotPasswordDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Model used for the Forgot password feature"
+      }
+    },
+    "securitySchemes": {
+      "ApiKey": {
+        "type": "apiKey",
+        "description": "Please enter the API Key provided to you",
+        "name": "ApiKey",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "ApiKey": [ ]
+    }
+  ]
+}

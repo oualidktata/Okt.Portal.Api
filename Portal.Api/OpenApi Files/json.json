@@ -1,0 +1,328 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Portal Api Specification",
+    "description": "Api specification",
+    "contact": {
+      "name": "Oualid Ktata",
+      "email": "o.ktata@addendacapital.com"
+    },
+    "license": {
+      "name": "Assette license",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Account": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDto"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error"
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/User/{accountCode}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "GetAccount",
+        "parameters": [
+          {
+            "name": "accountCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error"
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/User/{userKey}/Accounts": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Gets accounts for a specific user",
+        "parameters": [
+          {
+            "name": "userKey",
+            "in": "path",
+            "description": "User key to filter by",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error"
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "422": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/api/User": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Add a new account to a user",
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountToCreateDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountToCreateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountToCreateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountToCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error"
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Updates an account",
+        "description": "Sample request : Update an account\r\n            PATCH /Accounts/accountCode\r\n            [{\r\n            \r\n            Json sample\r\n            \r\n            }]",
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "500": {
+            "description": "Server Error"
+          },
+          "default": {
+            "description": "Unexpected Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccountDto": {
+        "required": [
+          "accountCode",
+          "accountName"
+        ],
+        "type": "object",
+        "properties": {
+          "accountCode": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "AccountCode"
+          },
+          "accountName": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Name of the account"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Account DTO"
+      },
+      "AccountToCreateDto": {
+        "required": [
+          "accountCode",
+          "accountName"
+        ],
+        "type": "object",
+        "properties": {
+          "accountCode": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "AccountCode"
+          },
+          "accountName": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "Name of the account"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "ApiKey": {
+        "type": "apiKey",
+        "description": "Please enter the API Key provided to you",
+        "name": "ApiKey",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "ApiKey": [ ]
+    }
+  ]
+}

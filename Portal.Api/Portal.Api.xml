@@ -1,0 +1,270 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Portal.Api</name>
+    </assembly>
+    <members>
+        <member name="M:Portal.Api.Controllers.AccountController.CreateOrUpdateAccounts(Assette.Client.AccountToCreateDto[])">
+            <summary>
+            Creates or updates one or more accounts.
+            </summary>
+            <param name="accountsToCreate">Array of accounts to create</param>
+            <returns>List of Results</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.AccountController.SearchAccounts(Sieve.Models.SieveModel)">
+            <summary>
+            Gets accounts by filter.
+            </summary>
+            <returns>List of All available accounts.</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.AccountController.Remove(System.String[])">
+            <summary>
+            Removes an account.
+            </summary>
+            <param name="accountCodes">The code of the account to remove.</param>
+            <returns>200 if successfully removed</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.AccountController.GetAccount(System.String)">
+             <summary>
+             Gets a specific account in the system based on the filter.
+             </summary>
+             <param name="accountCode">The account code to look for.</param>
+            <returns>The account to look for.</returns>
+        </member>
+        <member name="T:Portal.Api.Controllers.DocTypeAssociationController">
+            <summary>
+            Manage associations (user-account-documentType)
+            </summary>
+        </member>
+        <member name="M:Portal.Api.Controllers.DocTypeAssociationController.CreateDocumentTypeAssociations(Assette.Client.AssociationDto[])">
+            <summary>
+            Creates Associations.
+            </summary>
+            <param name="associationsToCreate">Array of associations to create</param>
+            <returns>List of Results</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.DocTypeAssociationController.RemoveDocumentTypeAssociation(System.String,System.String,System.String)">
+            <summary>
+            Delete a specific Association.
+            </summary>
+            <param name="userCode"></param>
+            <param name="accountCode"></param>
+            <param name="documentTypeCode"></param>
+            <returns>List of Results</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.DocTypeAssociationController.RemoveDocumentTypeAssociations(Assette.Client.AssociationDto[])">
+            <summary>
+            Removes Associations in bulk.
+            </summary>
+            <param name="body">Array of associations to remove</param>
+            <returns>List of Results</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.DocTypeAssociationController.SearchDocumentTypeAssociations(Sieve.Models.SieveModel)">
+            <summary>
+            Gets associations by filter.
+            </summary>
+            <param name="searchModel">Generic search model</param>
+            <returns>List of associations.</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.CategoryController.CreateOrUpdateCategories(Assette.Client.CategoryToCreateDto[])">
+            <summary>
+            Creates or updates categories of document types
+            </summary>
+            <param name="categoriesToCreate">Array of Categories to create</param>
+            <returns>201 if successfully created.</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.CategoryController.GetAllCategories">
+            <summary>
+            Get All categories
+            </summary>
+            <returns>All categories</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.CategoryController.GetCategory(System.String)">
+            <summary>
+            Gets a specific category.
+            </summary>
+            <param name="categoryCode">The Key of the Category to look for.</param>
+            <returns>Category DTO if found.</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.CategoryController.Remove(System.String)">
+            <summary>
+            Remove a category
+            </summary>
+            <param name="categoryCode">Category to remove</param>
+            <returns>Ok if successfully removed</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.DocumentContentController.UploadDocument(System.String,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Uploads a document. Need to create document metadata using /api/v1/documentmetadata beforehand.
+            </summary>
+            <param name="documentId">The Key of the document.</param>
+            <param name="fileName">Document To upload</param>
+            <returns>The created Document</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.DocumentContentController.DownloadDocument(System.String)">
+            <summary>
+            Gets a document.
+            </summary>
+            <param name="documentId">The Key of the document.</param>
+            <returns>The Document if found.</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.DocumentContentController.BulkUpload(System.String,Microsoft.AspNetCore.Http.IFormFile[])">
+            <summary>
+            Uploads documents. Need to create document metadata using /api/v1/documentmetadata beforehand.
+            </summary>
+            <param name="documentId">The Key of the document.</param>
+            <param name="fileName">Document To upload</param>
+            <returns>The created Document</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.DocumentContentController.BulkDownload(System.String[])">
+            <summary>
+            Gets a document.TODO decide whether:string[] documentIds or Comma separated Keys of the documents or RequestBody.
+            </summary>
+            <param name="documentIds">document Ids.</param>
+            <returns>The Document if found.</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.DocumentMetaDataController.CreateOrUpdateDocumentsMetadata(Assette.Client.DocumentDto[])">
+            <summary>
+            Creates or update metadata for documents.
+            </summary>
+            <param name="docMetaDatas">Document metadata to create or update</param>
+            <returns>The created Document</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.DocumentMetaDataController.GetDocumentMetadata(System.String)">
+            <summary>
+            Gets a document metadata.
+            </summary>
+            <param name="documentId">The Key of the document.</param>
+            <returns>The Document if found.</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.DocumentMetaDataController.SearchDocumentsMetadata(Sieve.Models.SieveModel)">
+            <summary>
+            Gets all documents metadata.
+            </summary>
+            <returns>List of All Documents</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.DocumentMetaDataController.RemoveDocumentMetadata(System.String)">
+            <summary>
+            Removes a document metadata.
+            </summary>
+            <param name="documentId">Removes a document metadata.</param>
+            <returns>Ok if successfully removed</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.DocumentTypeController.CreateOrUpdateDocumentTypes(Assette.Client.DocumentTypeToCreateDto[])">
+            <summary>
+            Creates or updates Document Types.
+            </summary>
+            <param name="documentTypesToCreate">Array of document Types to Create.</param>
+            <returns>The created document Type</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.DocumentTypeController.GetDocumentType(System.String)">
+            <summary>
+            Gets a document type.
+            </summary>
+            <param name="docTypeCode">The Key of the document Type to look for.</param>
+            <returns>The document Type if found.</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.DocumentTypeController.GetDocumentTypeByCategory(System.String)">
+            <summary>
+            Gets document types of a category.
+            </summary>
+            <param name="categoryCode">Category Code to which document types are attached.</param>
+            <returns>Document Types associated to the specified category.</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.DocumentTypeController.RemoveDocumentType(System.String)">
+            <summary>
+            Removes a document type.
+            </summary>
+            <param name="docTypeCode">Document Type code to remove</param>
+            <returns>Ok if successfully removed</returns>
+        </member>
+        <member name="T:Portal.Api.Controllers.UserController">
+            <summary>
+            Manages users
+            </summary>
+        </member>
+        <member name="M:Portal.Api.Controllers.UserController.CreateOrUpdateUsers(Assette.Client.UserToCreateDto[])">
+            <summary>
+            Creates or updates users.
+            </summary>
+            <param name="usersToCreate">Array of users to create</param>
+            <returns>List of Results</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.UserController.Deactivate(System.String)">
+            <summary>
+            Deactivates a user.
+            </summary>
+            <param name="userCode">The key of the user to deactivate.</param>
+            <returns>Ok if successfully Activated the account</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.UserController.Activate(System.String)">
+            <summary>
+            Activates a user
+            </summary>
+            <param name="userCode">The key of the user to activate.</param>
+            <returns>Ok if successfully Activated the account.</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.UserController.Lock(System.String)">
+            <summary>
+            Locks a user.
+            </summary>
+            <param name="userCode">The user to lock</param>
+            <returns>200 if user was successfully locked.</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.UserController.Unlock(System.String)">
+            <summary>
+            Unlocks a user
+            </summary>
+            <param name="userCode">The user to unlock</param>
+            <returns>200 if user was successfully unlocked</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.UserController.ResetPassword(Assette.Client.ResetPasswordDto)">
+            <summary>
+            Resets the user password
+            </summary>
+            <param name="resetPasswordModel">The reset password Model</param>
+            <returns>200 if successfully unlocked</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.UserController.ForgotPassword(Assette.Client.ForgotPasswordDto)">
+            <summary>
+            Forgot password.
+            </summary>
+            <param name="forgotPasswordModel">Forgot password model</param>
+            <returns>200 if successfully unlocked</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.UserController.GetUser(System.String)">
+            <summary>
+            Gets a specific user by key.
+            </summary>
+            <param name="userCode">The user key to filter by.</param>
+            <returns>The user object if found.</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.UserController.GetAccountsForSpecificUser(System.String)">
+            <summary>
+            Gets accounts for a specific user.
+            </summary>
+            <param name="userCode">User key to filter by</param>
+            <returns>List of accounts</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.UserController.GetDocumentTypesForSpecificUser(System.String)">
+            <summary>
+            Gets documentTypes for a specific user
+            </summary>
+            <param name="userCode">User key to filter by</param>
+            <returns>List of accounts</returns>
+        </member>
+        <member name="M:Portal.Api.Controllers.UserController.SearchUsers(Sieve.Models.SieveModel)">
+            <summary>
+            Gets users by filter.
+            </summary>
+            <param name="searchFilter">Generic search model</param>
+            <returns>The user object if found.</returns>
+        </member>
+        <member name="T:Portal.Api.Filters.FileUploadOperation">
+            <summary>
+            Filter to enable handling file upload in swagger
+            Graciosité : https://alexdunn.org/2018/07/12/adding-a-file-upload-field-to-your-swagger-ui-with-swashbuckle/
+            </summary>
+        </member>
+    </members>
+</doc>
