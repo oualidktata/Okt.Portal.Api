@@ -27,8 +27,8 @@ namespace Portal.SDK.Test
         {
              AssetteApiSettings _assetteApiSettings = new AssetteApiSettings
                 {
-                    AuthUrl = @"https://app.stg.assette.com/services/id/auth/token",
-                    BaseAddress = @"https://app.stg.assette.com/app/admin",
+                    AuthUrl = @"https://HOST/services/id/auth/token",
+                    BaseAddress = @"https://HOST/app/admin",
                     Credentials = new AssetteApiCredentials
                     {
                         ClientId = "ADDN",
